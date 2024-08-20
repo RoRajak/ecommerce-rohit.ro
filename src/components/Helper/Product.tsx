@@ -23,7 +23,7 @@ function Product({ product }: productProps): React.ReactElement {
         <Rating
           name="simple-controlled"
           value={value}
-          onChange={(event, newValue) => {
+          onChange={(_event, newValue) => {
             setValue(newValue);
           }}
           precision={0.5}
@@ -51,15 +51,9 @@ function Product({ product }: productProps): React.ReactElement {
 
 
 export const CartProductComp: React.FC<productProps> = ({product}) => {
-  //const [quantity, setQuantity] = useState(1);
+ 
   const dispatch=useAppDispatch()
-  // const handleDecrease = () => {
-  //   if (quantity <= 0) return;
-  //   setQuantity(quantity - 1);
-  // };
-  // const handleAdd = () => {
-  //   setQuantity(quantity + 1);
-  // };
+
   return (
     <div className="flex gap-x-2">
       <div className="h-auto w-24 rounded-xl bg-[#F0EEED] ">
