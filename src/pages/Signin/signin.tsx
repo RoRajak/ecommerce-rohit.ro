@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginSiginIcon } from "../../constants";
 import { useNavigate } from "react-router-dom";
 interface SignInProps {
@@ -10,18 +10,21 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const navigate=useNavigate()
-  const handleSignIn=(e:React.FormEvent)=>{
-    e.preventDefault();
+
+  const navigate = useNavigate();
+  useEffect(() => {
     const storedData = localStorage.getItem("data");
     const parsedData = storedData ? JSON.parse(storedData) : null;
     if (parsedData) {
-      localStorage.clear()
-  
+      localStorage.clear();
     }
+  }, []);
+  const handleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+
     localStorage.setItem("data", JSON.stringify(data));
-    navigate("/")
-  }
+    navigate("/");
+  };
   return (
     <div className="flex min-h-screen bg-peach-100 sm:p-16 min-w-fit relative">
       <div className=" w-full sm:w-[60%] flex items-center justify-center">

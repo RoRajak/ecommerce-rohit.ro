@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loginSiginIcon } from "../../constants";
 import { useNavigate } from "react-router-dom";
 interface SignUpProps{
@@ -15,9 +15,16 @@ const SignUp = () => {
     }
   )
   const navigate=useNavigate()
+  useEffect(() => {
+    const storedData = localStorage.getItem("data");
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+    if (parsedData) {
+      localStorage.clear();
+    }
+  }, []);
   const handleSignUp=(e:React.FormEvent)=>{
     e.preventDefault();
-    
+
     localStorage.setItem("data", JSON.stringify(data));
     navigate("/")
   }
