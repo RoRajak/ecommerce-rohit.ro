@@ -13,7 +13,12 @@ const LoginPage = () => {
   const navigate=useNavigate()
   const handleSignIn=(e:React.FormEvent)=>{
     e.preventDefault();
-    
+    const storedData = localStorage.getItem("data");
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+    if (parsedData) {
+      localStorage.clear()
+  
+    }
     localStorage.setItem("data", JSON.stringify(data));
     navigate("/")
   }
